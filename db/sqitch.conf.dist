@@ -1,0 +1,13 @@
+[user]
+      name = "user.name @ GitHub"
+      email = "user.email @ GitHub"
+[rebase]
+    verify = true
+[deploy]
+    verify = true
+[core]
+	engine = pg
+	plan_file = sqitch.plan
+	top_dir = .
+[engine "pg"]
+	# registry = sqitch

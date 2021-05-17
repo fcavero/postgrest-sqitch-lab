@@ -1,0 +1,17 @@
+%syntax-version=1.0.0
+%project=lab-postgrest-sqitch
+
+appschema 2021-05-02T18:49:22Z Fernando Cavero <fcavero@grupoteva.com> # Main database vehicle schema.
+anonymous_role [appschema] 2021-05-02T19:17:57Z Fernando Cavero <fcavero@grupoteva.com> # Anonymous user for PostgRest.
+pgcrypto_ext [appschema] 2021-05-03T11:15:28Z Fernando Cavero <fcavero@grupoteva.com> # pgcrypto extension.
+tt_environmental_badge [appschema] 2021-05-03T11:46:11Z Fernando Cavero <fcavero@grupoteva.com> # Master table of environmental badges of vehicles.
+tt_vehicle_category [appschema] 2021-05-03T12:19:40Z Fernando Cavero <fcavero@grupoteva.com> # Master table of groups of types of vehicles.
+tt_vehicle_type [appschema] 2021-05-03T12:21:02Z Fernando Cavero <fcavero@grupoteva.com> # Master table of types of vehicles, according to the DGT data.
+tt_vehicle_service [appschema] 2021-05-03T12:21:22Z Fernando Cavero <fcavero@grupoteva.com> # Master table of services of vehicles, according to the DGT data.
+tt_vehicle_industry_construction_type [appschema] 2021-05-03T12:23:05Z Fernando Cavero <fcavero@grupoteva.com> # Master table of construction's industry types of vehicles, according to the DGT data.
+tt_vehicle_industry_use_type [appschema] 2021-05-03T12:23:57Z Fernando Cavero <fcavero@grupoteva.com> # Master table of industry types use of vehicles, according to the DGT data.
+tt_vehicle_industry_type [tt_vehicle_industry_construction_type tt_vehicle_industry_use_type appschema] 2021-05-03T12:24:11Z Fernando Cavero <fcavero@grupoteva.com> # Master table of industry types of vehicles, according to the DGT data.
+tt_vehicle_brand [appschema] 2021-05-03T12:39:26Z Fernando Cavero <fcavero@grupoteva.com> # Master table of brands of vehicles, according to the DGT data.
+t_vehicle [tt_environmental_badge tt_vehicle_category tt_vehicle_industry_type tt_vehicle_type tt_vehicle_service tt_vehicle_brand appschema] 2021-03-05T12:45:47Z Fernando Cavero <fcavero@grupoteva.com> # Table of vehicles.
+t_vehicle_holder [t_vehicle appschema] 2021-05-03T12:48:13Z Fernando Cavero <fcavero@grupoteva.com> # Table of holders of vehicles, according to the DGT data.
+t_vehicle_environmental_badge [t_vehicle tt_environmental_badge appschema] 2021-05-03T13:17:23Z Fernando Cavero <fcavero@grupoteva.com> # Table of environmental badges of vehicles, according to the DGT data.

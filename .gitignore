@@ -1,0 +1,7 @@
+###> Generic configuation files ###
+*.conf
+###< Generic configuation files ###
+
+###> env files ###
+.env
+###< env files ###

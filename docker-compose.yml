@@ -1,0 +1,56 @@
+version: '3.5'
+
+services:
+  swagger-ui:
+    image: swaggerapi/swagger-ui:latest
+    container_name: lab-postgrest-swagger-ui
+    ports:
+      - "8080:8080"
+    environment:
+      - API_URL=http://localhost:3000      
+    networks: 
+      - postgrest-backend
+    depends_on:
+      - postgrest
+  
+  postgrest:
+    image: lab-postgrest
+    build:
+      context: ./docker
+    container_name: lab-postgrest
+    ports:
+      - "3000:3000"
+    environment:
+      # Postgrest standard connection URI
+      - PGRST_DB_URI=postgres://lab-usr:lab-pwd@lab-postgrest-db:5432/lab-db
+      # The name of which database schema to expose to REST clients
+      - PGRST_DB_SCHEMA=public
+      # The database role to use when no client authentication is provided
+      - PGRST_DB_ANON_ROLE=anon
+      - PGRST_QUIET=false
+      - SQITCH_DEPLOY=deploy
+      - SQITCH_VERIFY=verify
+    networks:
+      - postgrest-backend
+    volumes:
+      - ./db:/sqitch
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:13-alpine
+    container_name: lab-postgrest-db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=lab-usr
+      - POSTGRES_PASSWORD=lab-pwd
+      - POSTGRES_DB=lab-db
+      - DB_ANON_ROLE=anon
+      - DB_SCHEMA=public
+    networks:
+      - postgrest-backend
+
+networks:
+  postgrest-backend:
+    driver: bridge
