@@ -1,26 +1,29 @@
-# docker-postgrest-sqitch
+# postgrest-sqitch-lab
 
 Ejecuta una instancia de [PostgREST](https://postgrest.com/) habiendo desplegado el esquema de la base de datos usando [Sqitch](http://sqitch.org), e, incluso, cargado en las tablas maestras la información mínima. También incluye un contenedor con [Swagger UI](https://github.com/swagger-api/swagger-ui), por su indudable interés.
 
-## Variables de entorno
+## Variables de entorno 🔖
 
-- `PGRST_DB_URI` (obligatoria) - Cadena de conexión de la BBDD.
-- `SQITCH_DEPLOY` (por defecto `deploy`) - Comando de Sqitch para desplegar cosas. Es posible añadirle opciones (v.g. `deploy --verify`).
-- `SQITCH_VERIFY` (por defecto `verify`) - Comando de Sqitch para validaciones.
-- `PGRST_QUIET` (por defecto `false`)
+- *PGRST_DB_URI* (obligatoria) - Cadena de conexión de la BBDD.
+- *SQITCH_DEPLOY* (por defecto *deploy*) - Comando de Sqitch para desplegar cosas. Es posible añadirle opciones (v.g. `deploy --verify`).
+- *SQITCH_VERIFY* (por defecto *verify*) - Comando de Sqitch para validaciones.
+- *PGRST_QUIET* (por defecto *false*)
 
 
-
-## Uso
+## Uso  🔧 
 
 ### Arrancar los contenedores
 
-```docker-compose up -d```
+```shell
+$ docker-compose up -d
+```
 
 
 ### Echar abajo los contenedores
 
-```docker-compose stop```
+```shell
+$ docker-compose stop
+```
 
 
 Sin embargo, si queremos, además, cepillarnos los contenedores ─y perder tristemente todo─ haremos esto:
@@ -186,14 +189,14 @@ Ojo cuidao, que para que funcione lo anterior el usuario de PostgREST debe tener
     "message": "permission denied for table t_vehicle"
 }
 ```
-La definición de roles adecuados y su relación con la autenticación de PostgREST no es baladí; no se ha incluido en el laboratorio en aras de simplificar conceptos. Puede echarse un ojirri aquí, precisamente aquí → https://postgrest.org/en/stable/auth.html#
+La definición de roles adecuados y su relación con la autenticación de PostgREST no es baladí; no se ha incluido en el laboratorio en aras de simplificar conceptos. Puede echarse un ojirri aquí, precisamente aquí → `https://postgrest.org/en/stable/auth.html#`
 
 Bueno, esto es muy grande, potente y rápido. Consúltese la documentación oficial para regocijo de sus autores → https://postgrest.org/en/stable/index.html
 
 Recordad que un par de horas de prueba y error os pueden ahorrar diez minutos de leer la documentación.
 
-### Swagger UI
+### Swagger UI 📑
 
-Una vez levantado el contenedor, lo encontraremos aquí → http://localhost:8080
+Una vez levantado el contenedor, lo encontraremos aquí → `http://localhost:8080`
 
 Está lleno de estr... de colorines, y el que avisa no es traidor.
